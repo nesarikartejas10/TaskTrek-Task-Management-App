@@ -1,3 +1,4 @@
+import TaskCard from "../TaskCard/TaskCard";
 import styles from "./TaskColumn.module.css";
 
 const TaskColumn = ({ title, icon }) => {
@@ -7,6 +8,7 @@ const TaskColumn = ({ title, icon }) => {
         <img src={icon} alt="" className={styles.taskColumnIcon} />
         {title}
       </h2>
+      <TaskCard />
     </section>
   );
 };
