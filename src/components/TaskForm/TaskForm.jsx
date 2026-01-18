@@ -1,3 +1,4 @@
+import Tag from "../Tag/Tag";
 import styles from "./TaskForm.module.css";
 
 const TaskForm = () => {
@@ -12,10 +13,10 @@ const TaskForm = () => {
 
         <div className={styles.taskFormBottomLine}>
           <div>
-            <button className={styles.tag}>HTML</button>
-            <button className={styles.tag}>CSS</button>
-            <button className={styles.tag}>JavaScript</button>
-            <button className={styles.tag}>React</button>
+            <Tag />
+            <Tag />
+            <Tag />
+            <Tag />
           </div>
 
           <div>
