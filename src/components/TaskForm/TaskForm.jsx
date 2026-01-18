@@ -13,10 +13,10 @@ const TaskForm = () => {
 
         <div className={styles.taskFormBottomLine}>
           <div>
-            <Tag />
-            <Tag />
-            <Tag />
-            <Tag />
+            <Tag tagName="HTML" />
+            <Tag tagName="CSS" />
+            <Tag tagName="JavaScript" />
+            <Tag tagName="React" />
           </div>
 
           <div>
