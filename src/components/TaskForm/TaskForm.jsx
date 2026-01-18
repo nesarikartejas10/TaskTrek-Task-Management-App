@@ -1,4 +1,4 @@
-import { styles } from "./TaskForm.module.css";
+import styles from "./TaskForm.module.css";
 
 const TaskForm = () => {
   return (
@@ -11,20 +11,24 @@ const TaskForm = () => {
         />
 
         <div className={styles.taskFormBottomLine}>
-          <button classname={styles.tag}>HTML</button>
-          <button classname={styles.tag}>CSS</button>
-          <button classname={styles.tag}>JavaScript</button>
-          <button classname={styles.tag}>React</button>
+          <div>
+            <button className={styles.tag}>HTML</button>
+            <button className={styles.tag}>CSS</button>
+            <button className={styles.tag}>JavaScript</button>
+            <button className={styles.tag}>React</button>
+          </div>
 
-          <section classname={styles.taskStatus}>
-            <option value="todo">To do</option>
-            <option value="doing">Doing</option>
-            <option value="done">Done</option>
-          </section>
+          <div>
+            <select className={styles.taskStatus}>
+              <option value="todo">To do</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
 
-          <button type="submit" className={styles.taskSubmit}>
-            + Add Task
-          </button>
+            <button type="submit" className={styles.taskSubmit}>
+              + Add Task
+            </button>
+          </div>
         </div>
       </form>
     </header>
