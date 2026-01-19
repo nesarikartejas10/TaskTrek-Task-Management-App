@@ -1,10 +1,16 @@
 import { useState } from "react";
 import Tag from "../Tag/Tag";
 import styles from "./TaskForm.module.css";
+import useTaskStore from "../../store/useTaskStore";
 
 const tagList = ["HTML", "CSS", "JavaScript", "React"];
 
 const TaskForm = () => {
+  const addTask = useTaskStore((state) => state.addTask);
+  const tasks = useTaskStore((state) => state.tasks);
+
+  console.log(tasks.length);
+
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
@@ -36,7 +42,10 @@ const TaskForm = () => {
   //form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskData);
+    addTask(taskData);
+    setTaskData({ task: "", status: "todo", tags: [] });
+
+    console.log(tasks.length);
   };
 
   return (

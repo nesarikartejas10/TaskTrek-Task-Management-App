@@ -10,9 +10,9 @@ const App = () => {
     <div className="app">
       <TaskForm />
       <main className="appMain">
-        <TaskColumn title="To do" icon={Todo} />
-        <TaskColumn title="Doing" icon={Doing} />
-        <TaskColumn title="Done" icon={Done} />
+        <TaskColumn title="To do" icon={Todo} status="todo" />
+        <TaskColumn title="Doing" icon={Doing} status="doing" />
+        <TaskColumn title="Done" icon={Done} status="done" />
       </main>
     </div>
   );

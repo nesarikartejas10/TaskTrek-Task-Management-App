@@ -2,14 +2,15 @@ import Tag from "../Tag/Tag";
 import styles from "./TaskCard.module.css";
 import deleteIcon from "../../assets/delete.png";
 
-function TaskCard() {
+function TaskCard({ task }) {
   return (
     <article className={styles.taskCard}>
-      <p className={styles.taskText}>This is sample text</p>
+      <p className={styles.taskText}>{task.task}</p>
       <div className={styles.taskCardBottomLine}>
         <div className={styles.taskCardTags}>
-          <Tag tagName="HTML" />
-          <Tag tagName="CSS" />
+          {task.tags.map((tag) => (
+            <Tag key={tag} tagName={tag} isSelected={true} />
+          ))}
         </div>
         <div className={styles.taskDelete}>
           <img
