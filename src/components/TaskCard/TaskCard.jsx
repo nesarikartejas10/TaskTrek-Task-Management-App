@@ -1,8 +1,10 @@
 import Tag from "../Tag/Tag";
 import styles from "./TaskCard.module.css";
 import deleteIcon from "../../assets/delete.png";
+import useTaskStore from "../../store/useTaskStore";
 
 function TaskCard({ task }) {
+  const deleteTask = useTaskStore((state) => state.deleteTask);
   return (
     <article className={styles.taskCard}>
       <p className={styles.taskText}>{task.task}</p>
@@ -12,7 +14,7 @@ function TaskCard({ task }) {
             <Tag key={tag} tagName={tag} isSelected={true} />
           ))}
         </div>
-        <div className={styles.taskDelete}>
+        <div className={styles.taskDelete} onClick={() => deleteTask(task.id)}>
           <img
             src={deleteIcon}
             alt="delete-icon"

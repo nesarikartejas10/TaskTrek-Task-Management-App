@@ -15,6 +15,12 @@ const useTaskStore = create(
         return { tasks: [...state.tasks, newTask] };
       });
     },
+
+    deleteTask: (taskId) => {
+      set((state) => ({
+        tasks: state.tasks.filter((task) => task.id !== taskId),
+      }));
+    },
   })),
 );
 
