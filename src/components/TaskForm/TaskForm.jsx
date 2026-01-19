@@ -2,18 +2,36 @@ import { useState } from "react";
 import Tag from "../Tag/Tag";
 import styles from "./TaskForm.module.css";
 
+const tagList = ["HTML", "CSS", "JavaScript", "React"];
+
 const TaskForm = () => {
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
+    tags: [],
   });
 
   const handleTaskData = (e) => {
     const { name, value } = e.target;
-    setTaskData((prevTask) => {
-      return { ...prevTask, [name]: value };
+    setTaskData((prevTasks) => {
+      return { ...prevTasks, [name]: value };
     });
   };
+
+  const selectTag = (tag) => {
+    if (taskData.tags.some((item) => item === tag)) {
+      const filteredTags = taskData.tags.filter((item) => item !== tag);
+      setTaskData((prevTasks) => {
+        return { ...prevTasks, tags: filteredTags };
+      });
+    } else {
+      setTaskData((prevTasks) => {
+        return { ...prevTasks, tags: [...prevTasks.tags, tag] };
+      });
+    }
+  };
+
+  console.log(taskData.tags);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,10 +52,9 @@ const TaskForm = () => {
 
         <div className={styles.taskFormBottomLine}>
           <div>
-            <Tag tagName="HTML" />
-            <Tag tagName="CSS" />
-            <Tag tagName="JavaScript" />
-            <Tag tagName="React" />
+            {tagList.map((tag) => {
+              return <Tag key={tag} tagName={tag} selectTag={selectTag} />;
+            })}
           </div>
 
           <div>
