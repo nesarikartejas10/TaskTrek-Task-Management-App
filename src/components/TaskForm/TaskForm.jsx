@@ -11,6 +11,7 @@ const TaskForm = () => {
     tags: [],
   });
 
+  //handle task and status
   const handleTaskData = (e) => {
     const { name, value } = e.target;
     setTaskData((prevTasks) => {
@@ -18,8 +19,9 @@ const TaskForm = () => {
     });
   };
 
+  // handle tag selection
   const selectTag = (tag) => {
-    if (taskData.tags.some((item) => item === tag)) {
+    if (taskData.tags.includes(tag)) {
       const filteredTags = taskData.tags.filter((item) => item !== tag);
       setTaskData((prevTasks) => {
         return { ...prevTasks, tags: filteredTags };
@@ -31,8 +33,7 @@ const TaskForm = () => {
     }
   };
 
-  console.log(taskData.tags);
-
+  //form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(taskData);
@@ -53,7 +54,14 @@ const TaskForm = () => {
         <div className={styles.taskFormBottomLine}>
           <div>
             {tagList.map((tag) => {
-              return <Tag key={tag} tagName={tag} selectTag={selectTag} />;
+              return (
+                <Tag
+                  key={tag}
+                  tagName={tag}
+                  selectTag={selectTag}
+                  isSelected={taskData.tags.includes(tag)}
+                />
+              );
             })}
           </div>
 
