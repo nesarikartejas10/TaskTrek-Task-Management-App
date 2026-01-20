@@ -42,6 +42,16 @@ const TaskForm = () => {
   //form submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (taskData.task.trim() === "") {
+      alert("please enter task 🙂");
+      return;
+    }
+
+    if (taskData.tags.length === 0) {
+      alert("please select atleast one tag 🏷️");
+      return;
+    }
+
     addTask(taskData);
     setTaskData({ task: "", status: "todo", tags: [] });
 
