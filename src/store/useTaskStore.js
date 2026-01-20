@@ -6,6 +6,7 @@ const useTaskStore = create(
     persist(
       (set, get) => ({
         tasks: [],
+        activeTaskId: null,
 
         addTask: (taskData) => {
           set((state) => {
@@ -22,6 +23,23 @@ const useTaskStore = create(
           set((state) => ({
             tasks: state.tasks.filter((task) => task.id !== taskId),
           }));
+        },
+
+        setActiveTask: (id) => {
+          set({ activeTaskId: id });
+        },
+
+        moveTask: (status, position) => {
+          const { tasks, activeTaskId } = get();
+
+          const taskToMove = tasks.find((task) => task.id === activeTaskId);
+
+          const remainingTasks = tasks.filter(
+            (task) => task.id !== activeTaskId,
+          );
+
+          remainingTasks.splice(position, 0, { ...taskToMove, status: status });
+          set({ tasks: remainingTasks, activeTaskId: null });
         },
       }),
       { name: "tasktrek-storage" },

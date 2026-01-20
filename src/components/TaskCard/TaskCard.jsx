@@ -5,8 +5,14 @@ import useTaskStore from "../../store/useTaskStore";
 
 function TaskCard({ task }) {
   const deleteTask = useTaskStore((state) => state.deleteTask);
+  const setActiveTask = useTaskStore((state) => state.setActiveTask);
   return (
-    <article className={styles.taskCard}>
+    <article
+      className={styles.taskCard}
+      draggable
+      onDragStart={() => setActiveTask(task.id)}
+      onDragEnd={() => setActiveTask(null)}
+    >
       <p className={styles.taskText}>{task.task}</p>
       <div className={styles.taskCardBottomLine}>
         <div className={styles.taskCardTags}>
