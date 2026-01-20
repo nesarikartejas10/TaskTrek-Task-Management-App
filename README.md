@@ -1,16 +1,128 @@
-# React + Vite
+# 🗂️ TaskTrek – Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Kanban-style Task Management frontend application** built with **React.js** and **Zustand**.  
+This project focuses on **clean architecture**, **scalable state management**, and **interview-ready best practices**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## React Compiler
+👉 Add your deployed link here (Vercel / Netlify)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🧠 Why This Project?
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was first built using **local state and props**, and then **refactored to Zustand** to:
+
+- Eliminate prop drilling
+- Centralize business logic
+- Make drag-and-drop reliable
+- Follow real-world frontend architecture
+
+This makes the project **production-like**, not just tutorial-level.
+
+---
+
+## ✨ Features
+
+- ✅ Add tasks with status and tags
+- 🏷️ Tag-based task labeling (HTML, CSS, JavaScript, React)
+- 🖱️ Drag & Drop tasks between columns (Todo → Doing → Done)
+- 🗑️ Delete tasks
+- 💾 Persistent storage using LocalStorage
+- 🆔 Unique task IDs (no array index usage)
+- ⚡ Lightweight global state management using Zustand
+- 🧼 Clean and modular component structure
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js** (Functional Components & Hooks)
+- **Zustand** – Global state management
+- **CSS** – Custom styling
+- **HTML5 Drag & Drop API**
+- **LocalStorage** – Data persistence
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├─ assets/
+│  └─ delete.png
+│
+├─ components/
+│  ├─ DropArea/
+│  │  ├─ DropArea.jsx
+│  │  └─ DropArea.module.css
+│  │
+│  ├─ Tag/
+│  │  ├─ Tag.jsx
+│  │  └─ Tag.module.css
+│  │
+│  ├─ TaskCard/
+│  │  ├─ TaskCard.jsx
+│  │  └─ TaskCard.module.css
+│  │
+│  ├─ TaskColumn/
+│  │  ├─ TaskColumn.jsx
+│  │  └─ TaskColumn.module.css
+│  │
+│  └─ TaskForm/
+│     ├─ TaskForm.jsx
+│     └─ TaskForm.module.css
+│
+├─ store/
+│  └─ useTaskStore.js
+│
+├─ App.jsx
+├─ App.css
+├─ main.jsx
+└─ index.css
+```
+
+---
+
+## 🧩 State Management Strategy
+
+### 🔹 Local State (`useState`)
+
+Used for **component-specific UI state**:
+
+- Form input handling
+- Tag selection
+- Drag hover effect
+
+### 🔹 Global State (Zustand)
+
+Used for **shared application state**:
+
+- Tasks list
+- Active dragged task ID
+- Add / Delete / Move task actions
+
+This separation improves:
+
+- Readability
+- Scalability
+- Maintainability
+
+---
+
+## 🆔 Why Unique IDs Instead of Array Index?
+
+Each task uses a **unique ID** generated with:
+
+```js
+crypto.randomUUID();
+```
+
+### Benefits:
+
+- Prevents bugs during drag & drop
+- Safe deletion without index shifting
+- Correct React re-rendering using stable keys
+- Industry best practice
